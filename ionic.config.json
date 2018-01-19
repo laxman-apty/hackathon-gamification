@@ -1,6 +1,6 @@
 {
-  "name": "af2-lists",
-  "app_id": "",
+  "name": "gamification",
+  "app_id": "846f08f6",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
