@@ -3,8 +3,7 @@ import {
   NavController,
   AlertController,
   ActionSheetController } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList, AngularFireDatabaseModule  } from 'angularfire2/database';
-import { FirebaseListObservable } from "angularfire2/database-deprecated";
+import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 
 interface Song {
   id?: number;
