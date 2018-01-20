@@ -1,12 +1,12 @@
 const express = require('express');
 const firebase = require('firebase');
 var config = {
-  apiKey: "AIzaSyDc12i6Iee64PT9Jb-58DQ3Jq14vCIkWFE",
-  authDomain: "zeva-sk.firebaseapp.com",
-  databaseURL: "https://zeva-sk.firebaseio.com",
-  projectId: "zeva-sk",
-  storageBucket: "zeva-sk.appspot.com",
-  messagingSenderId: "1074433625352"
+  apiKey: "AIzaSyCO_-l8Km0z6oBb5C6BYjOmKRfLmK669QI",
+  authDomain: "gamification-20118.firebaseapp.com",
+  databaseURL: "https://gamification-20118.firebaseio.com",
+  projectId: "gamification-20118",
+  storageBucket: "gamification-20118.appspot.com",
+  messagingSenderId: "610811387999"
 };
 firebase.initializeApp(config);
 const app = express();
@@ -16,18 +16,27 @@ app.use(bodyParser.json())
 var i = 0;
 app.post('/', function (req, res) {
   var post_body = req.body;
-  const ref = firebase.database().ref('/' + post_body.user.accountId);
+  console.log(post_body);
+  const ref = firebase.database().ref('jira_actions/' + post_body.user.accountId);
   ref.once("value")
     .then(function (snapshot) {
-      var count = snapshot.child("count").val(); // {first:"Ada",last:"Lovelace"}
-      if (!count) {
-        count = 1;
-      } else {
-        count++;
+
+      var actions_count = snapshot.child("actions_count").val();
+      if (!actions_count) {
+        actions_count = {};
       }
-      ref.set({ count: count, email: post_body.user.emailAddress });
+
+      var event_name = post_body.issue_event_type_name;
+      actions_count[event_name] = actions_count[event_name] ? actions_count[event_name] + 1 : 1;
+      actions_count["total_count"] = actions_count["total_count"] ? actions_count["total_count"] + 1 : 1;
+
+      var db_body = {
+        email: post_body.user.emailAddress,
+        actions_count: actions_count,
+        source: 'jira'
+      };
+      ref.set(db_body);
     });
-  console.log(i, post_body.user.emailAddress, post_body.issue.fields.summary);
   i++;
   res.send('ok');
 });
