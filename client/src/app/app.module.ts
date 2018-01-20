@@ -9,21 +9,23 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+// import { LoginPage } from '../pages/login/login';
 
 // AF2 Settings
 export const firebaseConfig = {
-  apiKey: "AIzaSyDXduo21UODGFcLoVk55I6n9BkhzQx9A98",
-  authDomain: "gamification-63123.firebaseapp.com",
-  databaseURL: "https://gamification-63123.firebaseio.com",
-  projectId: "gamification-63123",
-  storageBucket: "gamification-63123.appspot.com",
-  messagingSenderId: "633135224646"
+  apiKey: "AIzaSyCO_-l8Km0z6oBb5C6BYjOmKRfLmK669QI",
+  authDomain: "gamification-20118.firebaseapp.com",
+  databaseURL: "https://gamification-20118.firebaseio.com",
+  projectId: "gamification-20118",
+  storageBucket: "gamification-20118.appspot.com",
+  messagingSenderId: "610811387999"
 };
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    // LoginPage
   ],
   imports: [
     BrowserModule,
