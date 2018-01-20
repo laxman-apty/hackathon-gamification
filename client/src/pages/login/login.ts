@@ -4,7 +4,7 @@ import {
   AlertController,
   ActionSheetController
 } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { HomePage } from '../home/home';
 
 @Component({
