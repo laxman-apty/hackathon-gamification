@@ -1,9 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
-      Email
-      score
+      Gamification!!
     </ion-title>
   </ion-navbar>
   <!-- <ion-buttons end>
@@ -19,9 +17,27 @@
   <p>
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
   </p> -->
-  <ion-list>
-    <ion-item *ngFor="let data of scoreDetails">
-      {{data.email}} - {{data.actions_count.total_count}}
+  <ion-list center>
+    <!-- <table border='1'>
+          <tr>
+          <th>Email</th>
+          <th>Score</th>
+          </tr>
+      </table> -->
+      <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+          Hello people
+      </expandable>
+    <ion-item>
+      <ion-grid class="table-border">
+        <ion-row class="row-border heading-row">
+          <ion-col class="col-border heading-text">Email</ion-col>
+          <ion-col class="col-border heading-text">Score</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let data of scoreDetails" class="row-border">
+          <ion-col class="col-border"> {{data.email}}</ion-col>
+          <ion-col class="col-border"> {{data.actions_count.total_count}}</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>
