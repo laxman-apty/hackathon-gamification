@@ -16,14 +16,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
-const transaction_table_name = 'jira_actions';
+const transaction_table_path = 'jira_actions';
 // const history_table_name = '';
 
 var i = 0;
 app.post('/', function (req, res) {
   var post_body = req.body;
   console.log(post_body);
-  const ref = firebase.database().ref(transaction_table_name + '/' + post_body.user.accountId);
+  const ref = firebase.database().ref(transaction_table_path + '/' + post_body.user.accountId);
   ref.once("value")
     .then(function (snapshot) {
       var db_body = getDbBody(snapshot, post_body);
