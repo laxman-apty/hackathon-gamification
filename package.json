@@ -1,0 +1,15 @@
+{
+  "name": "gamification",
+  "version": "0.0.1",
+  "author": "excers-letznav",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "scripts": {
+    "install": "npm run client && npm run server",
+    "client": "cd client && npm install --no-save && npm run ionic-app-scripts build && cd ..",
+    "server": "cd server && npm install --no-save && npm run ionic-app-scripts build && cd ..",
+    "start": "cd client && npm start",
+    "build": "cd client && npm build"
+  }
+}
