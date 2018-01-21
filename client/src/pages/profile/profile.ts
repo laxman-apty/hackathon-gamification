@@ -29,6 +29,7 @@ export class ProfilePage implements OnInit {
       this.user = user;
       this._storage.get('actions').then((actions) => {
         this.action = actions && actions.find(action => action.email === this.user);
+        console.info(this.action);
       });
     });
   }
