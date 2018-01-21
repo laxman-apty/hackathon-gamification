@@ -25,7 +25,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    // LoginPage
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -36,6 +36,7 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     HomePage
   ],
   providers: [
