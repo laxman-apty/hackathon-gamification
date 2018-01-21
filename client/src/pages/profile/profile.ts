@@ -25,17 +25,18 @@ export class ProfilePage implements OnInit {
   action: any;
 
   ngOnInit(){
-    this._storage.get('user').then((user) => {
-      this.user = user;
-      this._storage.get('actions').then((actions) => {
-        this.action = actions && actions.find(action => action.email === this.user);
-        console.info(this.action);
-      });
+    this._storage.get('profile').then((user) => {
+      this.action = user;
+      // this._storage.get('actions').then((actions) => {
+      //   this.action = actions && actions.find(action => action.email === this.user);
+      //   console.info(this.action);
+      // });
     });
   }
 
   logout(){
     this._storage.set('user', '');
+    this._storage.set('profile', '');
     this._storage.set('actions', '');
     this.navCtrl.push(LoginPage);
   }

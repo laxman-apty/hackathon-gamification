@@ -12,6 +12,9 @@
 <ion-content padding>
   <ion-list *ngIf="action?.email">
     <ion-item>
+        <ion-avatar item-start="">
+            <img [src]="(action && action.image_url) ? action.image_url['32x32'] : './assets/imgs/user.jpg'">
+        </ion-avatar>
         <h2>Name : {{action.name}}</h2>
         <h2>Email : {{action.email}}</h2>
         <h2>Source: {{action.source}}</h2>

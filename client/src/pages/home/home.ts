@@ -30,6 +30,9 @@ export class HomePage {
         this.backup.sort(function(a,b) {return (a.actions_count.total_count < b.actions_count.total_count) ? 1 : ((b.actions_count.total_count > a.actions_count.total_count) ? -1 : 0);} );
         this.scoreDetails = this.backup;
         this._storage.set('actions', this.scoreDetails);
+        this._storage.get('user').then((user) => {
+          this._storage.set('profile',  this.scoreDetails && this.scoreDetails.find(action => action.email === user));
+        });
       }
     });
     this.navCtrl.setRoot(TabsPage);
@@ -42,6 +45,7 @@ export class HomePage {
 
   public logout(){
     this._storage.set('user', '');
+    this._storage.set('profile', '');
     this._storage.set('actions', '');
     this.navCtrl.push(LoginPage);
   }

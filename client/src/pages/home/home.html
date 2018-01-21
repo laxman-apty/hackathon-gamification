@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Dashboard
+      Leader Board
       <button ion-button icon-end style="position: absolute; right: 1%;" (click)="logout()">
         Logout
       </button>
@@ -14,7 +14,7 @@
     <ion-item *ngFor="let data of scoreDetails">
 
         <ion-avatar item-start="">
-            <img [src]="(data && data.image_url) ? data.image_url['16x16'] : './assets/imgs/user.jpg'">
+            <img [src]="(data && data.image_url) ? data.image_url['32x32'] : './assets/imgs/user.jpg'">
         </ion-avatar>
         <h2>{{data.name}}</h2>
         <p>{{data.email}}</p>
