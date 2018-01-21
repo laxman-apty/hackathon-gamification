@@ -8,8 +8,10 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 
 interface User {
@@ -24,7 +26,7 @@ const initUser: User = {
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
 export class LoginPage {
 
@@ -34,6 +36,7 @@ export class LoginPage {
     public afDatabase: AngularFireDatabase,
     public actionSheetCtrl: ActionSheetController,
     private _firebaseAuth: AngularFireAuth,
+    private _storage: Storage,
   ) {
     this.authUser = _firebaseAuth.authState;
   }
@@ -45,6 +48,7 @@ export class LoginPage {
     firebase.auth.EmailAuthProvider.credential( this.user.email, this.user.password );
     this._firebaseAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
       .then((res) => {
+        this._storage.set('user', res.email);
         this.gotoHome();
       })
       .catch((err) => this.presentAlert('Registration Error', 'User already existing'));
@@ -53,13 +57,14 @@ export class LoginPage {
   logIn() {
     this._firebaseAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
       .then((res) => {
+        this._storage.set('user', res.email);
         this.gotoHome();
       })
       .catch((err) => this.presentAlert('Login Error', 'Invalid Username or Password'));
   }
 
   public gotoHome() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(TabsPage);
   }
 
   private presentAlert(title: string, subTitle: string) {

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Profile
+    </ion-title>
+    <ion-buttons >
+      <button ion-button icon-end (click)="logout()">
+        Logout
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="action">
+    <ion-item>
+        <h2>{{action.name}}</h2>
+        <p>{{action.email}}</p>
+        <p>{{action.source}}</p>
+        <p>{{action.actions_count?.issue_created}}</p>
+        <p>{{action.actions_count?.issue_updated}}</p>
+        <p>{{action.actions_count?.total_count}}</p>
+    </ion-item>
+  </ion-list>
+  {{action}}
+  <ion-list *ngIf="!action?.email">
+    <ion-item>
+        <h2>You have not done any actions in JIRA</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

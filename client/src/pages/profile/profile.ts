@@ -4,33 +4,30 @@ import {
   AlertController,
   ActionSheetController
 } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
-
 import { LoginPage } from '../login/login';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-profile',
+  templateUrl: 'profile.html'
 })
-export class HomePage {
+export class ProfilePage {
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public afDatabase: AngularFireDatabase,
     public actionSheetCtrl: ActionSheetController,
     private _storage: Storage,
   ) {
-    this.gamificationDB = afDatabase.list('/jira_actions')
-    this.gamificationDB.valueChanges().subscribe(data => {
-      this.scoreDetails = data;
-      this._storage.set('actions', data);
+    this._storage.get('user').then((user) => {
+      this.user = user;
+      this._storage.get('actions').then((actions) => {
+        this.action = actions.filter(action => action.email === this.user);
+      });
     });
-
   }
-  gamificationDB: AngularFireList<null>;
-  scoreDetails: any;
+  user: any;
+  action: any;
 
   logout(){
     this._storage.set('user', '');
