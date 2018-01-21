@@ -6,10 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-// import { LoginPage } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -25,17 +26,19 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    // LoginPage
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     HomePage
   ],
   providers: [
