@@ -8,6 +8,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 
 import { LoginPage } from '../login/login';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-home',
@@ -25,14 +26,16 @@ export class HomePage {
     this.gamificationDB = afDatabase.list('/jira_actions')
     this.gamificationDB.valueChanges().subscribe(data => {
       this.scoreDetails = data;
-      this._storage.set('actions', data);
+      this._storage.set('actions', this.scoreDetails);
     });
-
+    this.navCtrl.setRoot(TabsPage);
   }
-  gamificationDB: AngularFireList<null>;
-  scoreDetails: any;
 
-  logout(){
+  gamificationDB: AngularFireList<null>;
+  scoreDetails: any[];
+  object = Object;
+
+  public logout(){
     this._storage.set('user', '');
     this._storage.set('actions', '');
     this.navCtrl.push(LoginPage);

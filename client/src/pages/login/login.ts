@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   NavController,
   AlertController,
   ActionSheetController
 } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Storage } from '@ionic/storage';
 
-import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 
 
@@ -28,7 +27,7 @@ const initUser: User = {
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
@@ -43,6 +42,13 @@ export class LoginPage {
 
   user: User = initUser;
   private authUser: Observable<firebase.User>;
+
+  ngOnInit() {
+    const tabs: any = document.querySelector('.tabbar.show-tabbar');
+    if(tabs) {
+      tabs.style.display = 'none';
+    }
+  }
 
   registerUser() {
     firebase.auth.EmailAuthProvider.credential( this.user.email, this.user.password );
