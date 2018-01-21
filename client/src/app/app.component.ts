@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireDatabase } from 'angularfire2/database';
- 
+
 import { LoginPage } from '../pages/login/login';
 
 @Component({
@@ -13,8 +13,8 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen,
     public afDatabase: AngularFireDatabase,
   ) {

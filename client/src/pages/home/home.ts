@@ -6,6 +6,8 @@ import {
 } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
+import { LoginPage } from '../login/login';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -23,7 +25,7 @@ export class HomePage {
       console.info(data);
       this.scoreDetails = data;
     });
-    
+
   }
   gamificationDB: AngularFireList<null>;
   scoreDetails: any;

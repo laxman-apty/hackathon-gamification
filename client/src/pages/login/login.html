@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-     Login Page!! Welcome!!
+     Login/Register
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,16 +9,19 @@
 <ion-content padding>
     <ion-list>
         <ion-item>
-          <ion-input placeholder="Enter User Name(Email ID)"></ion-input>
+          <ion-input placeholder="Enter User Name(Email ID)" [(ngModel)]="user.email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="password" placeholder="Enter Password"></ion-input>
+          <ion-input type="password" placeholder="Enter Password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
        </ion-list>
-      
+
     <ion-buttons >
-        <button ion-button  full (click)="gotoHome()">
-          Submit
+        <button ion-button (click)="logIn()">
+          Login
+        </button>
+        <button ion-button (click)="registerUser()">
+          Register
         </button>
     </ion-buttons>
 </ion-content>
